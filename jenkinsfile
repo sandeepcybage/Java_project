@@ -6,5 +6,9 @@ pipeline {
                 sh 'date'
             }
         }
-    }
+        stage('Build') { 
+            steps {
+                sh 'mvn clean package' 
+            }
+       }
 }
