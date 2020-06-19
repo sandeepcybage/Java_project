@@ -11,5 +11,11 @@ pipeline {
                 sh 'mvn clean package' 
             }
        }
+       stage('Run') { 
+            steps {
+                sh 'cd /target'
+                sh 'nohup java -jar *jar'
+            }
+       }
     }
 }
