@@ -14,7 +14,7 @@ pipeline {
        stage('Run') { 
             steps {
                 sh 'cd /var/lib/jenkins/workspace/testPipeline1/target'
-                sh 'nohup java -jar *jar'
+                sh 'nohup java -jar *.jar'
             }
        }
     }
