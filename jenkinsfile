@@ -3,9 +3,7 @@ pipeline {
     stages {
         stage('Set Up') {
             steps {
-                sh 'date'
-                sh 'echo GIT_COMMIT %GIT_COMMIT%'
-                sh 'echo GIT_BRANCH %GIT_BRANCH%'
+                sh 'mvn clean package' 
             }
         }
     }
