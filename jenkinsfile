@@ -40,6 +40,9 @@ pipeline {
            git pull origin master
            cd /home/aditya/aditya/personal/
            cp *.jar /var/lib/jenkins/workspace/Hello-world-Java/
+           git add .
+           git commit -m "adding jar files"
+           git push origin master
            '''
          }
       }
