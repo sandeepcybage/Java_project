@@ -15,6 +15,12 @@ pipeline {
            sh 'mvn clean package'
          }
       }
+
+      stage ('store the jar') {
+         steps {
+            sh 'cp /var/lib/jenkins/workspace/Hello-world-Java/target/*.jar /home/aditya/aditya/personal/'
+         }
+      }
       stage('checkout other repo') {
          steps {
            checkout([$class: 'GitSCM', 
@@ -23,6 +29,18 @@ pipeline {
            extensions: [], 
            submoduleCfg: [],
            userRemoteConfigs: [[url: 'https://github.com/aditya-malviya/Gittest.git']]])           
+         }
+      }
+
+      stage ('Push the jar to git') {
+         steps {
+          sh label: '', 
+           script: 
+           '''
+           git pull origin master
+           cd /home/aditya/aditya/personal/
+           cp *.jar /var/lib/jenkins/workspace/Hello-world-Java/
+           '''
          }
       }
    }
