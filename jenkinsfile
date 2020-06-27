@@ -1,19 +1,20 @@
+
 pipeline {
-    agent any
-    stages {
-         stage {
-            steps {
-               sh label: '', 
-                  script: 
-                  '''
-                  git pull origin master
-                  '''
-                  } 
-               }
-         stage('Set Up') {
-            steps {
-                sh 'mvn clean install' 
-            }
-        }
-    }
+  agent any
+   stages {
+      stage('checkout from develop') {
+         steps {
+           sh label: '', 
+           script: 
+           '''
+           git pull origin master
+           '''
+         }
+      }
+      stage('build') {
+         steps {
+           sh 'mvn clean package'
+         }
+      }
+   }
 }
