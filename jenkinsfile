@@ -17,13 +17,12 @@ pipeline {
       }
       stage('checkout other repo') {
          steps {
-           sh label: '', 
-           script: 
-           '''
-           cd /home/aditya/aditya/personal/git
-           git pull origin master
-           cp /var/lib/jenkins/workspace/Hello-world-Java/target/demo1-0.0.1-SNAPSHOT.jar /home/aditya/aditya/personal/git/Gittest
-           '''
+           checkout([$class: 'GitSCM', 
+           branches: [[name: '*/master']], 
+           doGenerateSubmoduleConfigurations: false, 
+           extensions: [], 
+           submoduleCfg: [],
+           userRemoteConfigs: [[url: 'https://github.com/aditya-malviya/Gittest.git']]])           
          }
       }
    }
