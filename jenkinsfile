@@ -1,4 +1,3 @@
-
 pipeline {
   agent any
    stages {
@@ -14,6 +13,17 @@ pipeline {
       stage('build') {
          steps {
            sh 'mvn clean package'
+         }
+      }
+      stage('checkout other repo') {
+         steps {
+           sh label: '', 
+           script: 
+           '''
+           cd /home/aditya/aditya/personal/git
+           git pull origin master
+           cp /var/lib/jenkins/workspace/Hello-world-Java/target/demo1-0.0.1-SNAPSHOT.jar /home/aditya/aditya/personal/git/Gittest
+           '''
          }
       }
    }
