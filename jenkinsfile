@@ -1,7 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage('Set Up') {
+         stage {
+            steps {
+               sh label: '', 
+                  script: 
+                  '''
+                  git pull origin master
+                  '''
+                  } 
+               }
+         stage('Set Up') {
             steps {
                 sh 'mvn clean install' 
             }
