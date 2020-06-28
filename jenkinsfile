@@ -24,9 +24,9 @@ pipeline {
             
             // authors name
             
-            env.GIT_COMMITTER_NAME  = scmVars.GIT_COMMITTER_NAME 
-            echo "env.GIT_COMMITTER_NAME "
-            echo "${env.GIT_COMMITTER_NAME }"
+            env.GIT_AUTHOR_NAME   = scmVars.GIT_AUTHOR_NAME  
+            echo "env.GIT_AUTHOR_NAME  "
+            echo "${env.GIT_AUTHOR_NAME  }"
             }
         }
     }   
