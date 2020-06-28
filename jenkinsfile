@@ -1,50 +1,34 @@
 pipeline {
   agent any
-   stages {
-      stage('checkout from develop') {
-         steps {
-           sh label: '', 
-           script: 
-           '''
-           git pull origin master
-           '''
-         }
-      }
-      stage('build') {
-         steps {
-           sh 'mvn clean package'
-         }
-      }
+  stages {
+      stage('Checkout code') {
+        steps {
+            script {
+            // Checkout the repository and save the resulting metadata
+            def scmVars = checkout changelog: false, 
+            poll: false, 
+            scm: [$class: 'GitSCM', 
+            branches: [[name: '*/master']], 
+            doGenerateSubmoduleConfigurations: false, 
+            extensions: [], submoduleCfg: [], 
+            userRemoteConfigs: [[url: 'https://github.com/aditya-malviya/JavaHelloWorld.git']]] 
 
-      stage ('store the jar') {
-         steps {
-            sh 'cp /var/lib/jenkins/workspace/Hello-world-Java/target/*.jar /home/aditya/aditya/personal/'
-         }
-      }
-      stage('checkout other repo') {
-         steps {
-           checkout([$class: 'GitSCM', 
-           branches: [[name: '*/master']], 
-           doGenerateSubmoduleConfigurations: false, 
-           extensions: [], 
-           submoduleCfg: [],
-           userRemoteConfigs: [[url: 'https://github.com/aditya-malviya/Gittest.git']]])           
-         }
-      }
+            // Display the variable using scmVars
+            echo "scmVars.GIT_COMMIT"
+            echo "${scmVars.GIT_COMMIT}"
+            // Displaying the variables saving it as environment variable
 
-      stage ('Push the jar to git') {
-         steps {
-          sh label: '', 
-           script: 
-           '''
-           git pull origin master
-           cd /home/aditya/aditya/personal/
-           cp *.jar /var/lib/jenkins/workspace/Hello-world-Java/
-           git add .
-           git commit -m "adding jar files"
-           git push origin master
-           '''
-         }
-      }
-   }
+            env.GIT_COMMIT = scmVars.GIT_COMMIT
+            echo "env.GIT_COMMIT"
+            echo "${env.GIT_COMMIT}"
+            
+            // authors name
+            
+            env.GIT_COMMITTER_NAME  = scmVars.GIT_COMMITTER_NAME 
+            echo "env.GIT_COMMITTER_NAME "
+            echo "${env.GIT_COMMITTER_NAME }"
+            }
+        }
+    }   
+  } 
 }
