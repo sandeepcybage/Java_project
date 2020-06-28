@@ -22,6 +22,12 @@ pipeline {
             env.GIT_COMMIT = scmVars.GIT_COMMIT
             echo "env.GIT_COMMIT"
             echo "${env.GIT_COMMIT}"
+            
+            // authors name
+            
+            env.GIT_COMMITTER_NAME  = scmVars.GIT_COMMITTER_NAME 
+            echo "env.GIT_COMMITTER_NAME "
+            echo "${env.GIT_COMMITTER_NAME }"
             }
         }
     }   
