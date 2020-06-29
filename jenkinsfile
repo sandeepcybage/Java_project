@@ -25,12 +25,14 @@
       
       stage('checkout other repo') {
          steps {
-           checkout([$class: 'GitSCM', 
-           branches: [[name: '*/master']], 
+           checkout changelog: false, 
+           poll: false, 
+           scm: [$class: 'GitSCM', branches: [[name: '*/master']], 
            doGenerateSubmoduleConfigurations: false, 
            extensions: [], 
-           submoduleCfg: [],
-           userRemoteConfigs: [[url: 'https://github.com/aditya-malviya/Gittest.git']]])           
+           submoduleCfg: [], 
+           userRemoteConfigs: [[credentialsId: 'c5417d66-7a6c-4d6e-92cc-289f25ce42a8', 
+           url: 'https://github.com/aditya-malviya/test01.git']]]         
          }
       }
 
@@ -41,7 +43,7 @@
            '''
            git pull origin master
            cd /home/aditya/aditya/personal/
-           cp *.jar /var/lib/jenkins/workspace/Hello-world-Java/
+           cp *.jar ./
            git add .
            git commit -m "adding jar files"
            git push origin master
