@@ -27,12 +27,13 @@
          steps {
            checkout changelog: false, 
            poll: false, 
-           scm: [$class: 'GitSCM', branches: [[name: '*/master']], 
+           scm: [$class: 'GitSCM', 
+           branches: [[name: '*/master']], 
            doGenerateSubmoduleConfigurations: false, 
-           extensions: [], 
+           extensions: [],  
            submoduleCfg: [], 
            userRemoteConfigs: [[credentialsId: 'c5417d66-7a6c-4d6e-92cc-289f25ce42a8', 
-           url: 'https://github.com/aditya-malviya/test01.git']]]         
+           url: 'https://github.com/aditya-malviya/Gittest.git']]]      
          }
       }
 
