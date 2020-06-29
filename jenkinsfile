@@ -23,11 +23,9 @@ pipeline {
             echo "env.GIT_COMMIT"
             echo "${env.GIT_COMMIT}"
             
-            // authors name
-            
-            env.GIT_COMMITTER_NAME  = scmVars.GIT_COMMITTER_NAME 
-            echo "env.GIT_COMMITTER_NAME "
-            echo "${env.GIT_COMMITTER_NAME }"
+            latestTag = sh(returnStdout:  true, script: "git tag --sort=-creatordate | head -n 1").trim()
+            echo "${latestTag}"
+          
             }
         }
     }   
