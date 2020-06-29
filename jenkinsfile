@@ -5,23 +5,6 @@ pipeline {
       stage('Checkout code') {
         steps {
             script {
-            // Checkout the repository and save the resulting metadata
-            def scmVars = checkout changelog: false, 
-            poll: false, 
-            scm: [$class: 'GitSCM', 
-            branches: [[name: '*/master']], 
-            doGenerateSubmoduleConfigurations: false, 
-            extensions: [], submoduleCfg: [], 
-            userRemoteConfigs: [[url: 'https://github.com/aditya-malviya/JavaHelloWorld.git']]] 
-
-            // Display the variable using scmVars
-            echo "scmVars.GIT_COMMIT"
-            echo "${scmVars.GIT_COMMIT}"
-            // Displaying the variables saving it as environment variable
-
-            env.GIT_COMMIT = scmVars.GIT_COMMIT
-            echo "env.GIT_COMMIT"
-            echo "${env.GIT_COMMIT}"
             
              latestTag = sh(returnStdout:  true, script: "git tag --sort=-creatordate | head -n 1").trim()
              env.BUILD_VERSION = latestTag
