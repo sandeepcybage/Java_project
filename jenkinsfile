@@ -23,9 +23,11 @@ pipeline {
             echo "env.GIT_COMMIT"
             echo "${env.GIT_COMMIT}"
             
-            latestTag = sh(returnStdout:  true, script: "git tag --sort=-creatordate | head -n 1").trim()
-            echo "${latestTag}"
-          
+             latestTag = sh(returnStdout:  true, script: "git tag --sort=-creatordate | head -n 1").trim()
+             env.BUILD_VERSION = latestTag
+             echo "env-BUILD_VERSION"
+             echo "${env.BUILD_VERSION}"
+            
             }
         }
     }   
