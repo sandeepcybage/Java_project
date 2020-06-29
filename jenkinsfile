@@ -42,11 +42,7 @@
           sh label: '', 
            script: 
            '''
-          // git pull origin master
            cp /home/aditya/aditya/personal/*.jar ./
-       //    git add .
-       //    git commit -m "adding jar files"
-       //    git push origin master
            '''
          }
       }
