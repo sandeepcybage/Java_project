@@ -1,15 +1,15 @@
-
 pipeline {
     agent any
     stages {
         stage('Test') {
             steps {
-                whateverFunction()
+                String abc = whateverFunction()
+                echo abc
             }
         }
     }
 }
 
-void whateverFunction() {
-    echo "Hello function executed"
+String whateverFunction() {
+    return "Hello function executed"
 }
