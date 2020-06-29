@@ -3,13 +3,12 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                def abc = whateverFunction()
-                echo abc
+                whateverFunction()
             }
         }
     }
 }
 
-String whateverFunction() {
-    return "Hello function executed"
+void whateverFunction() {
+    echo "Hello function executed"
 }
