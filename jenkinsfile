@@ -7,42 +7,7 @@
            sh label: '', 
            script: 
            '''
-           git pull origin master
-           '''
-         }
-      }
-      stage('build') {
-         steps {
-           sh 'mvn clean package'
-         }
-      }
-
-      stage ('store the jar') {
-         steps {
-            sh 'cp /var/lib/jenkins/workspace/Hello-world-Java/target/*.jar /home/aditya/aditya/personal/'
-         }
-      }
-      
-      stage('checkout other repo') {
-         steps {
-           checkout changelog: false, 
-           poll: false, 
-           scm: [$class: 'GitSCM', 
-           branches: [[name: '*/master']], 
-           doGenerateSubmoduleConfigurations: false, 
-           extensions: [],  
-           submoduleCfg: [], 
-           userRemoteConfigs: [[credentialsId: 'c5417d66-7a6c-4d6e-92cc-289f25ce42a8', 
-           url: 'https://github.com/aditya-malviya/Gittest.git']]]      
-         }
-      }
-
-      stage ('Push the jar to git') {
-         steps {
-          sh label: '', 
-           script: 
-           '''
-           cp /home/aditya/aditya/personal/*.jar ./
+           echo hello
            '''
          }
       }
