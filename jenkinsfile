@@ -7,7 +7,7 @@
            sh label: '', 
            script: 
            '''
-           echo {params.service}
+           echo ${params.service}
            '''
          }
       }
