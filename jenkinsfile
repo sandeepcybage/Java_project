@@ -5,7 +5,7 @@
        steps {
       checkout([$class: 'GitSCM', branches: [[name: '*/master']], 
       doGenerateSubmoduleConfigurations: false, 
-      extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'src/main/']], submoduleCfg: [], 
+      extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '/src/main']], submoduleCfg: [], 
       userRemoteConfigs: [[url: 'https://github.com/aditya-malviya/JavaHelloWorld.git']]])
       }
       }
