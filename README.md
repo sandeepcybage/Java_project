@@ -1,4 +1,4 @@
 # Java_project
 READ.ME
-build
+build it
 
